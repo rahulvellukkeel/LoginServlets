@@ -27,4 +27,15 @@
   	<url-pattern>/fail</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet>
+  	<servlet-name>out</servlet-name>
+  	<servlet-class>com.main.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>out</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

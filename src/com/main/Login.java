@@ -15,10 +15,9 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String idcheck = "rahul";
-		String passcheck = "rahul";
+		String passcheck = "1234";
 		String id = req.getParameter("id");
 		String pass = req.getParameter("password");
-		String nextservlet = "fail";
 
 		PrintWriter out = res.getWriter(); 
 		out.println(id + " " +pass);
@@ -28,14 +27,18 @@ public class Login extends HttpServlet {
 			if (pass.equals(passcheck)) 
 			{
 
-				nextservlet = "success";
+				res.sendRedirect("success.html");
 				//out.println("True");
 				
 			}
 
 		}
 
-		res.sendRedirect(nextservlet);
+		else
+		{
+			res.sendRedirect("failed.html");
+		}
+		
 
 		/*
 		 * PrintWriter out = res.getWriter(); out.println(id);
