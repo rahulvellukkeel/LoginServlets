@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Logout extends HttpServlet 
+public class SuccessServlet extends HttpServlet
 {
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//res.sendRedirect("Index.html");
+		
 		PrintWriter out = res.getWriter();
-		RequestDispatcher rd =req.getRequestDispatcher("Index.html");
+		out.println("Successfully logged in as "+ req.getParameter("id"));
 		
-		rd.include(req, res);
+		RequestDispatcher red = req.getRequestDispatcher("logout.html");
+		red.include(req, res);
 		
-		
-		out.println("<h2><span style= 'color:blue'>Successfully logged out </span></h2>");
 		
 	}
+	
 	
 }

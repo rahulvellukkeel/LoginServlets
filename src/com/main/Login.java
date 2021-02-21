@@ -3,6 +3,7 @@ package com.main;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpSession;
 public class Login extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String idcheck = "rahul";
 		String passcheck = "1234";
@@ -20,23 +21,38 @@ public class Login extends HttpServlet {
 		String pass = req.getParameter("password");
 
 		PrintWriter out = res.getWriter(); 
-		out.println(id + " " +pass);
+		//out.println(id + " " +pass);
 		
 		
-		if (id.equals(idcheck)) {
-			if (pass.equals(passcheck)) 
-			{
-
-				res.sendRedirect("success.html");
-				//out.println("True");
+		RequestDispatcher rd = null;
+		
+		if (id.equalsIgnoreCase(idcheck) && pass.equals(passcheck)) {
 				
+				//using dispcatcher
+				rd=req.getRequestDispatcher("success");
+				rd.forward(req, res);
+			
+				//using redirect
+				//res.sendRedirect("success.html");
+			
+			
 			}
-
-		}
 
 		else
 		{
-			res.sendRedirect("failed.html");
+			/*
+			 * rd=req.getRequestDispatcher("Index.html"); out.
+			 * println("<h2><span style= 'color:red'> Error!!! invalid credentials </span></h2>"
+			 * ); rd.include(req, res);
+			 */
+			
+			//res.sendRedirect("fail");
+			
+			rd=req.getRequestDispatcher("fail");
+			rd.forward(req, res);
+			
+			
+		//	res.sendRedirect("failed.html");
 		}
 		
 
